@@ -1,61 +1,123 @@
 # PwC-Switzerland-Power-BI-in-Data-Analytics-Virtual-Case-Experience
 
-We aim to build innovative technology solutions that differentiate us from our competitors and digitise the business. Part of that included a strategic decision to invest in upskilling programmes so our people could learn how to use digital tools for data visualisation as well as automation, data cleansing and more.
+## Task 2-Call Centre Trends
+Visualizing customer and agent behavior Create a dashboard in Power BI for Call Centre Manager that reflects all relevant Key Performance Indicators (KPIs) and metrics in the dataset.
 
-If our people could use these tools to solve common problems, they’d help us become more efficient and growth-oriented now and more innovative later in Business Services and beyond. Now, employees are learning to build bots – over 2,400 have been created so far – to automate workflows. We continue to invest to make processes more intuitive using machine learning, PowerBI and eventually artificial intelligence (AI). These are key to working faster and solving problems differently for ourselves and our clients.
+### **Table of Contents:**
+**• Problem Statement**
 
-This is why you're here! Our Digital Accelerator programme is an internal chance that takes groups of our employees out of their day jobs and puts them through trainings that teaches them skills in technology such as automation, machine learning, design thinking, and digital storytelling. PowerBI is an important part of it as visualising data helps to handle and understand clients.
+**• Flow of work-:**
 
-Task 1: Call Centre Trends
-Create a dashboard in Power BI for Claire that reflects all relevant Key Performance Indicators (KPIs) and metrics in the dataset. Get creative!
+Step 1- Upload Data
+             
+Step 2-Cleaning data
+            
+Step 3-Transform data
+             
+Step 4-Load data 
 
-Possible KPIs include (to get you started, but not limited to):
+**• Data Preparation**
 
-Overall customer satisfaction
-Overall calls answered/abandoned
-Calls by time
-Average speed of answer
-Agent’s performance quadrant -> average handle time (talk duration) vs calls answered
-Call Centre Trends
+Data Modelling
 
-Task 2: Customer Retention
-A few weeks after presenting your dashboard to the management, the Retention Manager from the telecom reaches out to you directly. He was impressed by your work and asked if you can put together a dashboard about customer retention.
+Writing DAX 
 
-In addition, to better understand the data, the telecom Retention Manager has scheduled a meeting with the engagement partner at PwC to cover these points:
+**• Data Visualization**
 
-Customers in the telecom industry are hard-earned: we don’t want to lose them
-The retention department is here to get customers back in case of termination
-Currently, we get in touch after they have terminated the contract, but this is reactionary: it would be better to know in advance who is at risk
-We have done customer analysis with Excel: it has always ended in a dead-end
-We would like to know more about our customers: visualised clearly so that it’s self-explanatory for our management The Retentions Manager has provided some information, have a look through the resource section.
-Customer Retention Customer Retention
+**• Data Analysis**
 
-Task 3: Diversity & Inclusion
-Human Resources at our telecom client is highly into diversity and inclusion. They’ve been working hard to improve gender balance at the executive management level, but they’re not seeing any progress. They’re reaching out to us for help.
+**• Insights**
 
-At PwC Switzerland we are often approached by clients seeking support with diversity and inclusion. Companies need a workforce of diverse talents and backgrounds to succeed in an increasingly complex and heterogeneous world. To us, diversity and inclusion are business imperatives, not just nice-to-haves. We aim for all of our teams to feel welcome and appreciated. But actually achieving this and unlocking its potential involves a whole set of practical challenges.
+**• Shareable link**
 
-Here is a hint: Calculating the following measures could help to define proper KPIs:
+**•Problem Statement**
 
-number of men
-number of women
-number of leavers
-% employees promoted (FY21)
-% of women promoted
-% of hires men
-% of hires women
-% turnover
-Average performance rating: men
-Average Performance rating: women
-Diversity & Inclusion Diversity & Inclusion
+The purpose of this analysis is to create a dashboard in PowerBI for call canter manager that reflects all relevant Key Performance Indicators (KPIs) and metrics in the dataset. Get creative!
 
-This project was a part of the Virtual Internship organized by Forage under PWC Switzerland. The program is designed to provide the participants a real-time experience of creating dashboards according to client expectations. There were three tasks to analyze and visualize the data to help client providing meaningful insights. The tools used in this project are :-
+Possible KPIs include (but are not limited to):
 
-1. Excel
-2. Power Query
-3. Power BI
+• Overall customer satisfaction
+
+• Overall calls answered/abandoned
+
+• Calls by time
+
+• Average speed of answer
+
+• Agents performance quadrant -> average handle time(talk duration) vs calls answered
+
+**• Flow of work**
+
+**Step 1- Upload Data**
+
+The Dataset used for this analysis was presented by PWC_Switzerland and available at their official website page - [Dataset_link]
+
+**Step 2-Cleaning data**
+
+Data transformation was done in Power Query and the dataset was loaded into Microsoft Power BI Desktop for modelling.The call canter dataset is given by a table named:
+
+• Call Center which has 10 columns and 5000 rows of observation
+
+The tabulation below shows the Call center table with its column names and their description:
+
+| Column Name | Description |
+|--- | --- |
+| Call Id | Represents every unique observation in the dataset |
+| Agent | Describes the name of the agent |
+| Date | Describes the date of the call |
+| Time | Represents the time of the call |
+| Topic | Describes the topic of the caller |
+| Answered | (Y/N) Describes if the call was Answered or not |
+| Resolved | Describes if the problem was Resolved or not |
+| Speed of answer(in seconds) |	Represents the speed of answer in seconds|
+| AvgTalkDuration	| Represents the average talk duration of call |
+| Satisfaction rating |	Represents the satisfaction rating of the agent during the call |
+
+**Step 3-Transform data**
+
+Data Cleaning and transformation for the dataset were done in power query as follows: 
+
+• Unnecessary columns were removed 
+• Each of the columns in the table was validated to have the correct data type 
+• Unnecessary rows were removed
+
+
+**Data Visualization**
+
+Data visualization for the datasets was done in Microsoft Power BI Desktop: 
+
+• The Call Center Manager Page: Shows KPIs including overall customer satisfaction, overall calls answered/abandoned, calls by time, average speed of answer, agents performance quadrant -> average handle time(talk duration) vs calls answered
+
+**Data Analysis**
+
+Measures used in visualization are:
+
+• %TotalCallsAnswered = DIVIDE([CallsAnswered],COUNT('Call Center Data'[Call Id]))
+
+• CallsAnswered = CALCULATE(COUNT('Call Center Data'[Answered (Y/N)]),'Call Center Data'[Answered (Y/N)]="Y")
+
+• CallsMissed = CALCULATE(COUNT('Call Center Data'[Answered (Y/N)]),'Call Center Data'[Answered (Y/N)]="N")
+
+• IssueResolved = CALCULATE(COUNT('Call Center Data'[Resolved]),'Call Center Data'[Resolved]="Y")
+
+
+Insights
+As shown by Data Visualization, It can be deduced that:
+
+• The average satisfaction rating is 3.40
+
+• 4054 calls were answered and 3646 issues resolved
+
+• Jim has the highest satisfaction rating
+
+• The average speed of answer is 67.52 seconds
+
+• Jim has answered total 536 call which is highest whereas Stewart answered lowest number of calls i.e. 477
+
+**Dashboard image**
+![Call Center Trends Image](https://github.com/Sambhaji968/PwC-Switzerland-Power-BI-in-Data-Analytics-Virtual-Internship-Case-Experience/assets/157734829/97edc7ea-22ed-4543-9e92-3e101e009cce)
 
 
 
-Reference
-Forage - PwC Switzerland Power BI in Data Analytics Virtual Case Experience
+
+
