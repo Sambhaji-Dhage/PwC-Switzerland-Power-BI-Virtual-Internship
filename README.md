@@ -435,86 +435,40 @@ Data visualization for the datasets was done in Microsoft Power BI Desktop:
 
 Measures used in visualization are:
 
-• # of leavers = CALCULATE([#Total No.of employees],'Pharma Group AG'[FY20 leaver?]="Yes")
+• # after hire = 'Pharma Group AG'[# men]+[# women]
 
-• #Total_employees_promoted_in_FY20 = CALCULATE(COUNT( 'Pharma Group AG'[Employee ID]),'Pharma Group AG'[Promotion in FY20?]="Y")
+• # before hire = CALCULATE(COUNT('Pharma Group AG'[Employee ID]),'Pharma Group AG'[In base group for turnover FY20]="Y") 
 
-• # Total_employees_promted_in_FY21 = CALCULATE(COUNT('Pharma Group AG'[Employee ID]),'Pharma Group AG'[Promotion in FY21?]="Yes")
+• # Leavers = CALCULATE(COUNT('Pharma Group AG'[FY20 leaver?]), 'Pharma Group AG'[FY20 leaver?]="Yes")
 
-• #count after hiring = 'Basic Measuress'[#Total_men] + [#Total_female]
+• # Men = CALCULATE(COUNT('Pharma Group AG'[Gender]), 'Pharma Group AG'[Gender]="Male")
 
-• #Total No.of employees = COUNT('Pharma Group AG'[Employee ID])
+• # Women = CALCULATE(COUNT('Pharma Group AG'[Gender]), 'Pharma Group AG'[Gender]="Female")
 
-• #Total_female = CALCULATE(COUNT('Pharma Group AG'[Employee ID]),'Pharma Group AG'[Gender]="female")
+• % employees promoted = DIVIDE(CALCULATE(COUNT('Pharma Group AG'[In base group for Promotion FY21]),'Pharma Group AG'[Promotion in FY21?]="Yes"), CALCULATE(COUNT('Pharma Group AG'[Promotion in FY21?]), 'Pharma Group AG'[In base group for Promotion FY21]="Yes"))
 
-• #Total_men = CALCULATE(COUNTROWS('Pharma Group AG'),FILTER('Pharma Group AG','Pharma Group AG'[Gender]="male"))
+• % hires men = DIVIDE('Pharma Group AG'[# men], 'Pharma Group AG'[# men]+[# women])
 
-• #Total_promted = SUMX('Pharma Group AG',[# Total_employees_promoted_in_FY20]+[# Total_employees_promted_in_FY21])
+• % hires women = DIVIDE('Pharma Group AG'[# women], 'Pharma Group AG'[# men]+[# women])
 
-• % employees promoted (FY21) = DIVIDE(CALCULATE(COUNT('Pharma Group AG'[In base group for Promotion FY21]),FILTER('Pharma Group AG','Pharma Group AG'[Promotion in FY21?]="Yes")),[#Total No.of employees])*100
-
-• % employees promoted in FY20 = DIVIDE(CALCULATE([#Total No.of employees],'Pharma Group AG'[Promotion in FY20?]="Y"),[#Total No.of employees])*100
-
-• % employees promoted in FY21 = DIVIDE(CALCULATE([#Total No.of employees],'Pharma Group AG'[Promotion in FY21?]="Yes"),[#Total No.of employees])*100 • % MEN NEW HIRES = DIVIDE(MEN_new_HIRES[men new hires count],[New_Hires])*100
-
-• % of hires men = DIVIDE([#Total_men],'Basic Measuress'[#Total_men]+[#Total_female])
-
-• % of hires women = DIVIDE([#Total_female],'Basic Measuress'[#Total_female]+[#Total_men])
-
-• % of men promoted in FY20 = DIVIDE(CALCULATE([#Total No.of employees],FILTER('Pharma Group AG','Pharma Group AG'[Gender]="Male"),FILTER('Pharma Group AG','Pharma Group AG'[Promotion in FY20?]="Y")),[#Total No.of employees])
-
-• % of men promoted in FY21 = DIVIDE( CALCULATE([#Total No.of employees], FILTER('Pharma Group AG','Pharma Group AG'[Gender]="Male"),
-FILTER('Pharma Group AG','Pharma Group AG'[Promotion in FY21?]="Yes")),[#Total No.of employees])
-
-• % of women = DIVIDE([#Total_female],([#Total_men]+[#Total_female]))*100
-
-• % of women promoted in FY20 = DIVIDE(CALCULATE([#Total No.of employees],FILTER('Pharma Group AG','Pharma Group AG'[Gender]="Female"),FILTER('Pharma Group AG','Pharma Group AG'[Promotion in FY20?]="Y")),[#Total No.of employees])
-
-• % of women promoted in FY21 = DIVIDE( CALCULATE([#Total No.of employees], FILTER('Pharma Group AG','Pharma Group AG'[Gender]="Female"), FILTER('Pharma Group AG','Pharma Group AG'[Promotion in FY21?]="Yes")),[#Total No.of employees])
-
-• % total employees promoted = DIVIDE(CALCULATE(COUNT('Pharma Group AG'[In base group for Promotion FY21]),'Pharma Group AG'[Promotion in FY21?]="Yes"), CALCULATE(COUNT('Pharma Group AG'[Promotion in FY21?]), 'Pharma Group AG'[In base group for Promotion FY21]="Yes"))
-
-• % WOMEN NEW HIRES = DIVIDE([total women hires count],[New_Hires])*100
+• % turnover = [# leavers] / 'Pharma Group AG'[average # employee]
 
 • % women promoted = DIVIDE(CALCULATE(COUNT('Pharma Group AG'[In base group for Promotion FY21]),'Pharma Group AG'[Promotion in FY21?]="Yes", 'Pharma Group AG'[Gender]="Female"), CALCULATE(COUNT('Pharma Group AG'[Promotion in FY21?]),'Pharma Group AG'[Promotion in FY21?]="Yes"))
 
-• %_Turnover = [# of leavers]/'Basic Measuress'[Avg of employee count]
+• average # employee = ([# before hire] + 'Pharma Group AG'[# after hire])/2
 
-• %Total_Promoted = DIVIDE([#Total_promted],[#Total No.of employees])*100
+• Avg performamnce (men) = CALCULATE(AVERAGE('Pharma Group AG'[FY20 Performance Rating]),'Pharma Group AG'[Gender]="Male")
 
-• Average Performance Rating (men) = CALCULATE(AVERAGE('Pharma Group AG'[FY20 Performance Rating]),'Pharma Group AG'[Gender]="Male")
+• Avg performamnce (women) = CALCULATE(AVERAGE('Pharma Group AG'[FY20 Performance Rating]),'Pharma Group AG'[Gender]="Female")
 
-• Average Performance Rating (women) = CALCULATE(AVERAGE('Pharma Group AG'[FY20 Performance Rating]),'Pharma Group AG'[Gender]="Female")
-
-• Average rating performance (FY19) = AVERAGE('Pharma Group AG'[FY19 Performance Rating])
-
-• Average rating performance (FY20) = AVERAGE('Pharma Group AG'[FY20 Performance Rating])
-
-• Avg of employee count = ('Basic Measuress'[Count before hiring]+'Basic Measuress'[#count after hiring])/2
-
-• Avg performance rating Men (FY19) = CALCULATE(AVERAGE('Pharma Group AG'[FY19 Performance Rating]),'Pharma Group AG'[Gender]="Male")
-
-• Avg Performance rating MEN(FY20) = CALCULATE(AVERAGE('Pharma Group AG'[FY20 Performance Rating]),'Pharma Group AG'[Gender]="Male")
-
-• Avg performance rating women (FY19) = CALCULATE(AVERAGE('Pharma Group AG'[FY19 Performance Rating]),'Pharma Group AG'[Gender]="Female")
-
-• Avg performance rating women (FY20) = CALCULATE(AVERAGE('Pharma Group AG'[FY20 Performance Rating]),'Pharma Group AG'[Gender]="Female")
-
-• Count before hiring = CALCULATE(COUNT('Pharma Group AG'[Employee ID]),'Pharma Group AG'[In base group for turnover FY20]="Y") •	FTE = CALCULATE(COUNT('Pharma Group AG'[FTE group]), FILTER('Pharma Group AG','Pharma Group AG'[FTE group]="Full Time"))
-
-• MEN_new_HIRES = FILTER('Pharma Group AG','Pharma Group AG'[Gender]="Male" && 'Pharma Group AG'[New hire FY20?]="Y")
-
-• New_Hires = CALCULATE(COUNT('Pharma Group AG'[Employee ID]),FILTER('Pharma Group AG','Pharma Group AG'[New hire FY20?]="Y"))
-
-• Not FTE = CALCULATE(COUNT('Pharma Group AG'[FTE group]),FILTER('Pharma Group AG','Pharma Group AG'[FTE group] <> "Full Time" ))
-
-• total women hires count = COUNTROWS('women_new hires')
-
-• Turnover_YES = calculate(COUNT('Pharma Group AG'[In base group for turnover FY20]),FILTER('Pharma Group AG','Pharma Group AG'[In base group for turnover FY20]="Y"))
 
 **Insights**
 
 ####As shown by Data Visualization, It can be deduced that:
+
+•  Overall, the company seems to have a good gender balance in terms of hiring, with women making up just under half (41%) of new hires. However, there is a significant disparity in promotion rates, with only 25% of promotions going to women. This suggests that there may be barriers in place that are preventing women from being promoted at the same rate as men.
+
+• The turnover rate is higher for women than for men. This could be due to a number of factors, including the gender pay gap, a lack of opportunities for advancement, or a hostile work environment.
 
 • The average performance rating of the employees decreased from to in FY20..
 
@@ -524,9 +478,9 @@ FILTER('Pharma Group AG','Pharma Group AG'[Promotion in FY21?]="Yes")),[#Total N
 
 • Employee promotion rate is increase by 3% in FY21 than FY20.
 
-• Performance rating is drop by 0.57 in FY20 than FY19
+• FY20 Hires vs FY21 Job Level: While the number of females hired increased slightly from FY20 (40) to FY21 (41), the number of females in senior positions (director and above) remained the same (3) in both years. This indicates a potential gap in promoting women to higher-level positions.
 
-• FTE's are more likely to leave as well as male as highly leaver than females.
+• Women are more likely to be in lower-level positions, such as junior officers and managers, while men are more likely to be in higher-level positions, such as directors and executives. This suggests that there may be a lack of opportunities for women to progress to senior leadership positions.
 
 **Suggestions**
 
