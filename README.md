@@ -1,4 +1,4 @@
-# PwC-Switzerland-Power-BI-in-Data-Analytics-Virtual-Case-Experience
+# PwC Switzerland Data Analytics PowerBI Virtual Internship
 
 
 
